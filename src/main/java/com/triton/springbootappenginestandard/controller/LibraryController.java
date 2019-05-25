@@ -25,19 +25,19 @@ public class LibraryController {
         return Lists.newArrayList(books).toString();
     }
 
-    @GetMapping("/api")
+    @GetMapping("/api/author/")
     public String findByAuthor(@RequestParam String author) {
         List<Book> books = this.bookRepository.findByAuthor(author);
         return books.toString();
     }
 
-    @GetMapping("/api")
+    @GetMapping("/api/year")
     public String findByYearAfter(@RequestParam int year) {
         List<Book> books = this.bookRepository.findByYearGreaterThan(year);
         return books.toString();
     }
 
-    @GetMapping("/api")
+    @GetMapping("/api/authoryear/")
     public String findByAuthorYear(@RequestParam String author, @RequestParam int year) {
         List<Book> books = this.bookRepository.findByAuthorAndYear(author, year);
         return books.toString();
