@@ -13,6 +13,11 @@ public class LibraryController {
     @Autowired
     private BookRepository bookRepository;
 
+    @GetMapping("/")
+    public String greetings(){
+        return "Hello World!";
+    }
+
     @PostMapping("/api/{title}/{author}/{year}")
     public String saveBook(@PathVariable String title, @PathVariable String author, @PathVariable int year) {
         Book savedBook = this.bookRepository.save(new Book(title, author, year));
