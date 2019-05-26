@@ -3,6 +3,7 @@ package com.triton.springbootappenginestandard.controller;
 import com.google.common.collect.Lists;
 import com.triton.springbootappenginestandard.entity.Book;
 import com.triton.springbootappenginestandard.repository.BookRepository;
+import com.triton.springbootappenginestandard.service.StorageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -10,11 +11,19 @@ import java.util.List;
 
 @RestController
 public class LibraryController {
-    @Autowired
+
+    private StorageService storageService;
     private BookRepository bookRepository;
+
+    @Autowired
+    public LibraryController(StorageService storageService, BookRepository bookRepository) {
+        this.storageService = storageService;
+        this.bookRepository = bookRepository;
+    }
 
     @GetMapping("/")
     public String greetings(){
+        storageService.generateFile();
         return "Hello World!";
     }
 
